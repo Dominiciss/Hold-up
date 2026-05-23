@@ -13,10 +13,59 @@
     <main id="manuel-emanuel-main">
         <style>
             #manuel-emanuel-main {
-                all:unset;
+                all: unset;
                 padding: 0;
                 margin: 0;
                 font-family: Inter;
+            }
+
+            #manuel-emanuel-main .gn-ctn {
+                all: unset;
+            }
+
+            #manuel-emanuel-main .result {
+                all: unset;
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                background: #EEAECA;
+                background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+                width: 600px;
+                height: 210px;
+                padding: 5px;
+                border-radius: 5px;
+                z-index: -1;
+            }
+
+            #manuel-emanuel-main .result h1 {
+                text-align: left;
+                margin: 0 10px;
+                padding: 0;
+                font-size: 1.25rem;
+                user-select: none;
+            }
+
+            #manuel-emanuel-main .result p {
+                margin: 10px 15px;
+                padding: 5px 10px;
+                text-align: justify;
+                height: 150px;
+                background-color: rgba(255, 255, 255, 0.5);
+                backdrop-filter: blur(5px);
+                border-radius: 5px;
+                overflow-y: auto;
+                overflow-x: hidden;
+            }
+
+            #manuel-emanuel-main .result .go-back {
+                position: absolute;
+                top: 10px;
+                right: 20px;
+            }
+
+            #manuel-emanuel-main .result .go-back:hover {
+                transform: scale(0.90);
+                cursor: pointer;
             }
 
             #manuel-emanuel-main form {
@@ -29,52 +78,156 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                border-radius: 5px;
             }
 
             #manuel-emanuel-main textarea {
-                all:unset;
+                all: unset;
                 width: 600px;
                 height: 170px;
                 max-width: 600px;
                 min-width: 600px;
                 padding: 10px;
-                margin: 0 0 2px 0;
+                margin: 0 0 4px 0;
                 box-sizing: border-box;
                 background-color: rgba(255, 255, 255, 0.5);
                 backdrop-filter: blur(5px);
                 font-family: Inter;
+                border-radius: 5px;
             }
 
-            #manuel-emanuel-main button {
-                all:unset;
-                text-align: center;
-                background: #EEAECA;
-                background: linear-gradient(90deg, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+            #manuel-emanuel-main .btm-ctn {
+                display: flex;
                 width: 600px;
                 height: 30px;
                 padding: 0;
-                margin: 2px 0 0 0;
+                margin: 4px 0 0 0;
+                justify-content: center;
+                align-items: center;
+            }
+
+            #manuel-emanuel-main form p {
                 font-family: Inter;
+                text-decoration: underline;
+                margin: 0 10px 0 0;
+                user-select: none;
+            }
+
+            #manuel-emanuel-main p.limit {
+                color: rgb(134, 2, 2);
+            }
+
+            #manuel-emanuel-main .btn-bg {
+                width: 450px;
+                height: 30px;
+                margin: 0 0 0 10px;
+                padding: 0;
+                background-image: radial-gradient(circle, rgb(40, 40, 40) 0%, rgb(20, 20, 20) 100%);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 5px;
+                transition: transform 0.4s ease-out;
+                user-select: none;
+            }
+
+            #manuel-emanuel-main .btn-bg.disabled {
+                transform: scale(0.90);
+                filter: grayscale(90) blur(.5px) opacity(90%);
+            }
+
+            #manuel-emanuel-main .btn-bg:not(.disabled):hover {
+                transform: scale(1.05);
+                cursor: pointer;
+            }
+
+            #manuel-emanuel-main button {
+                all: unset;
+                background: #EEAECA;
+                margin: 0;
+                padding: 0;
+                font-family: Inter;
+                font-weight: 500;
+                font-size: 1.2rem;
+                background: linear-gradient(to right, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+                -webkit-text-fill-color: transparent;
+                -webkit-background-clip: text;
+                background-clip: text;
             }
         </style>
 
-        <form action="#">
-            <textarea id="text"></textarea>
-            <button id="btn-send">Send</button>
-        </form>
+        <div class="gn-ctn">
+            <form action="">
+                <textarea id="manuel-emanuel-textarea" placeholder="Start tipying your argument here..."></textarea>
+                <div class="btm-ctn">
+                    <p id="manuel-emanuel-wordlimit" class="limit">0/150 words</p>
+                    <div class="btn-bg disabled"><button id="manuel-emanuel-btn-send">Submit statement</button></div>
+                </div>
+            </form>
+            <div class="result" id="manuel-emanuel-result">
+                <h1>AI Judge verdict🧑‍⚖️</h1>
+                <p id="manuel-emanuel-response">Waiting for response...</p>
+                <button class="go-back" id="manuel-emanuel-go-back"><svg xmlns="http://www.w3.org/2000/svg" width="1em"
+                        height="1em" viewBox="0 0 56 56">
+                        <path d="M0 0h56v56H0z" fill="none" />
+                        <path fill="currentColor"
+                            d="M19.281 49.516c1.242 0 2.063-.844 2.063-2.063c0-.61-.188-1.055-.563-1.43l-6.75-6.586l-4.453-3.796l5.508.234h29.906c5.46 0 7.735-2.508 7.735-7.805V14.22c0-5.461-2.274-7.735-7.735-7.735H31.867c-1.289 0-2.133.938-2.133 2.086c0 1.149.844 2.086 2.133 2.086h13.125c2.484 0 3.563 1.078 3.563 3.563v13.85c0 2.555-1.079 3.633-3.563 3.633H15.086l-5.508.235l4.453-3.797l6.75-6.586c.375-.375.563-.844.563-1.453c0-1.196-.82-2.063-2.063-2.063c-.515 0-1.125.258-1.523.656L3.976 32.22c-.468.445-.703.984-.703 1.57c0 .563.235 1.125.703 1.57l13.782 13.524a2.27 2.27 0 0 0 1.523.633" />
+                    </svg>
+                </button>
+            </div>
+        </div>
 
         <script>
-            import { Groq } from 'groq-sdk';
+            const textarea = document.getElementById("manuel-emanuel-textarea")
+            const word_limit = document.getElementById("manuel-emanuel-wordlimit")
+            const send_button = document.getElementById("manuel-emanuel-btn-send")
+            const result_tab = document.getElementById("manuel-emanuel-result")
+            const return_button = document.getElementById("manuel-emanuel-go-back")
+            const text_response = document.getElementById("manuel-emanuel-response")
+            let bool_limit = true
+
+            textarea.addEventListener("input", (e) => {
+                let word_count = textarea.value.split(" ").filter((e) => e != "" && e != " ").length
+                word_limit.textContent = word_count + "/150 words"
+
+                if ((word_count > 150 || word_count == 0) && !bool_limit) {
+                    send_button.parentElement.classList.add("disabled")
+                    word_limit.classList.add("limit")
+                    bool_limit = true
+                } else if (word_count <= 150 && bool_limit) {
+                    send_button.parentElement.classList.remove("disabled")
+                    word_limit.classList.remove("limit")
+                    bool_limit = false
+                }
+            })
+
+            send_button.parentElement.addEventListener('click', (e) => {
+                e.preventDefault()
+                if (bool_limit) {
+                    return
+                }
+
+                createQuery(textarea.value)
+
+                result_tab.style['zIndex'] = 1
+            })
+
+            return_button.addEventListener('click', (e) => {
+                result_tab.style['zIndex'] = -1
+                text_response.textContent = "Waiting for response..."
+            })
 
             async function createQuery(text) {
-                const groq = new Groq();
+                const apiKey = new URLSearchParams(window.location.search).get("c")
+                
+                const url = "https://api.groq.com/openai/v1/chat/completions"
 
-                const chatCompletion = await groq.chat.completions.create({
+                const payload = {
                     "messages": [
                         {
                             "role": "user",
-                            "content": "Role: Impartial AI Judge & EFL Evaluator. When writing, announce yourself towards the student as if you were talking to him/her.\nContext: In A.P. Smith's \"The Hold-up\", an unarmed thief tries to rob a bank but fails because elderly customers refuse to lie down, complaining about dirty carpets (germaphobia), bad knees, and pension queues. The thief is delayed by arguing and gets arrested. \nTask: Evaluate the student's persuasive text either defending or prosecuting the thief. You won’t always need to say that it has mistakes. If you don’t find any, don't invent mistakes that don’t exist.\nEvaluation Criteria:\nLogic & Evidence: Sound reasoning, absence of logical fallacies, and accurate integration of story details.\nLanguage: Cohesion, use of argumentative discourse markers, grammatical accuracy, and formal tone. \nOutput Format:\nProvide a firm and decisive verdict according to the text provided by the student. Start your paragraph with the sentence “John is found guilty” or “John is innocent”. Address the student directly in your text. Tell the students the areas of their text where they can improve in both their language use and their ability to defend or prosecute the thief. This should be the only paragraph you have on your answer to the query that is sent to you. Give a detailed explanation of why you thought the student answer wasn’t enough or was more or less what was needed.\nStudent Text: \nNah, he is not guilty bro. Trust me."
-                        },
+                            "content": "Role: Impartial AI Judge & EFL Evaluator. When writing, announce yourself towards the student as if you were talking to him/her.\nContext: In A.P. Smith's \"The Hold-up\", an unarmed thief tries to rob a bank but fails because elderly customers refuse to lie down, complaining about dirty carpets (germaphobia), bad knees, and pension queues. The thief is delayed by arguing and gets arrested. \nTask: Evaluate the student's persuasive text either defending or prosecuting the thief. You won’t always need to say that it has mistakes. If you don’t find any, don't invent mistakes that don’t exist.\nEvaluation Criteria:\nLogic & Evidence: Sound reasoning, absence of logical fallacies, and accurate integration of story details.\nLanguage: Cohesion, use of argumentative discourse markers, grammatical accuracy, and formal tone. \nOutput Format:\nProvide a firm and decisive verdict according to the text provided by the student. Start your paragraph with the sentence “John is found guilty” or “John is innocent”. Address the student directly in your text. Tell the students the areas of their text where they can improve in both their language use and their ability to defend or prosecute the thief. This should be the only paragraph you have on your answer to the query that is sent to you. Give a detailed explanation of why you thought the student answer wasn’t enough or was more or less what was needed.\nStudent Text: \n" + text
+                        }
                     ],
                     "model": "groq/compound",
                     "temperature": 1,
@@ -91,10 +244,60 @@
                             ]
                         }
                     }
-                });
+                }
 
-                for await (const chunk of chatCompletion) {
-                    process.stdout.write(chunk.choices[0]?.delta?.content || '');
+                try {
+                    const response = await fetch(url, {
+                        method: "POST",
+                        headers: {
+                            "Authorization": `Bearer ${apiKey}`,
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(payload)
+                    })
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP Error! Status: ${response.status} - ${await response.text()}`)
+                    }
+
+                    const reader = response.body.getReader()
+                    const decoder = new TextDecoder("utf-8")
+                    let buffer = ''
+                    let fullText = ''
+
+                    while (true) {
+                        const { done, value } = await reader.read()
+                        if (done) break
+
+                        buffer += decoder.decode(value, { stream: true })
+
+                        const lines = buffer.split('\n')
+
+                        buffer = lines.pop()
+
+                        for (const line of lines) {
+                            if (line.trim() === '' || line.startsWith(':')) continue
+
+                            if (line.startsWith('data: ')) {
+                                const dataStr = line.slice(6).trim()
+
+                                if (dataStr === '[DONE]') {
+                                    text_response.textContent = fullText
+                                    return
+                                }
+
+                                try {
+                                    const parsed = JSON.parse(dataStr)
+                                    const content = parsed.choices[0]?.delta?.content || ''
+                                    fullText += content
+                                } catch (e) {
+                                    console.error("Error parsing JSON chunk:", e)
+                                }
+                            }
+                        }
+                    }
+                } catch (error) {
+                    console.error("Request failed:", error)
                 }
             }
         </script>
