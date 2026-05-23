@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <title>Judge activity</title>
+</head>
+
+<body>
+    <main id="manuel-emanuel-main">
+        <style>
+            #manuel-emanuel-main {
+                all:unset;
+                padding: 0;
+                margin: 0;
+                font-family: Inter;
+            }
+
+            #manuel-emanuel-main form {
+                all: unset;
+                background: #EEAECA;
+                background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+                width: 600px;
+                height: 210px;
+                padding: 5px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #manuel-emanuel-main textarea {
+                all:unset;
+                width: 600px;
+                height: 170px;
+                max-width: 600px;
+                min-width: 600px;
+                padding: 10px;
+                margin: 0 0 2px 0;
+                box-sizing: border-box;
+                background-color: rgba(255, 255, 255, 0.5);
+                backdrop-filter: blur(5px);
+                font-family: Inter;
+            }
+
+            #manuel-emanuel-main button {
+                all:unset;
+                text-align: center;
+                background: #EEAECA;
+                background: linear-gradient(90deg, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+                width: 600px;
+                height: 30px;
+                padding: 0;
+                margin: 2px 0 0 0;
+                font-family: Inter;
+            }
+        </style>
+
+        <form action="#">
+            <textarea id="text"></textarea>
+            <button id="btn-send">Send</button>
+        </form>
+
+        <script>
+            import { Groq } from 'groq-sdk';
+
+            async function createQuery(text) {
+                const groq = new Groq();
+
+                const chatCompletion = await groq.chat.completions.create({
+                    "messages": [
+                        {
+                            "role": "user",
+                            "content": "Role: Impartial AI Judge & EFL Evaluator. When writing, announce yourself towards the student as if you were talking to him/her.\nContext: In A.P. Smith's \"The Hold-up\", an unarmed thief tries to rob a bank but fails because elderly customers refuse to lie down, complaining about dirty carpets (germaphobia), bad knees, and pension queues. The thief is delayed by arguing and gets arrested. \nTask: Evaluate the student's persuasive text either defending or prosecuting the thief. You won’t always need to say that it has mistakes. If you don’t find any, don't invent mistakes that don’t exist.\nEvaluation Criteria:\nLogic & Evidence: Sound reasoning, absence of logical fallacies, and accurate integration of story details.\nLanguage: Cohesion, use of argumentative discourse markers, grammatical accuracy, and formal tone. \nOutput Format:\nProvide a firm and decisive verdict according to the text provided by the student. Start your paragraph with the sentence “John is found guilty” or “John is innocent”. Address the student directly in your text. Tell the students the areas of their text where they can improve in both their language use and their ability to defend or prosecute the thief. This should be the only paragraph you have on your answer to the query that is sent to you. Give a detailed explanation of why you thought the student answer wasn’t enough or was more or less what was needed.\nStudent Text: \nNah, he is not guilty bro. Trust me."
+                        },
+                    ],
+                    "model": "groq/compound",
+                    "temperature": 1,
+                    "max_completion_tokens": 1024,
+                    "top_p": 1,
+                    "stream": true,
+                    "stop": null,
+                    "compound_custom": {
+                        "tools": {
+                            "enabled_tools": [
+                                "web_search",
+                                "code_interpreter",
+                                "visit_website"
+                            ]
+                        }
+                    }
+                });
+
+                for await (const chunk of chatCompletion) {
+                    process.stdout.write(chunk.choices[0]?.delta?.content || '');
+                }
+            }
+        </script>
+    </main>
+</body>
+
+</html>
