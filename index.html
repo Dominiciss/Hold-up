@@ -17,6 +17,7 @@
                 padding: 0;
                 margin: 0;
                 font-family: Inter;
+                display: flex;
             }
 
             #manuel-emanuel-main .gn-ctn {
@@ -28,10 +29,10 @@
                 position: absolute;
                 top: 10px;
                 left: 10px;
-                background: #EEAECA;
-                background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+                background: rgb(49, 29, 4);
+                background: radial-gradient(circle, rgb(49, 29, 4) 0%, rgb(46, 31, 12) 100%);
                 width: 600px;
-                height: 210px;
+                height: 600px;
                 padding: 5px;
                 border-radius: 5px;
                 z-index: -1;
@@ -45,11 +46,18 @@
                 user-select: none;
             }
 
+            #manuel-emanuel-main .result h1 span {
+                background: radial-gradient(circle, rgb(206, 206, 206) 0%, rgb(150, 150, 150)) 100%;
+                -webkit-text-fill-color: transparent;
+                -webkit-background-clip: text;
+                background-clip: text;
+            }
+
             #manuel-emanuel-main .result p {
                 margin: 10px 15px;
                 padding: 5px 10px;
                 text-align: justify;
-                height: 150px;
+                height: 500px;
                 background-color: rgba(255, 255, 255, 0.5);
                 backdrop-filter: blur(5px);
                 border-radius: 5px;
@@ -57,10 +65,23 @@
                 overflow-x: hidden;
             }
 
+            #manuel-emanuel-main .btn-bg.open-padlet {
+                justify-self: end;
+                margin: 10px 20px;
+            }
+
+            #manuel-emanuel-main .btn-bg.open-padlet button {
+                background: radial-gradient(circle, rgb(206, 206, 206) 0%, rgb(150, 150, 150)) 100%;
+                -webkit-text-fill-color: transparent;
+                -webkit-background-clip: text;
+                background-clip: text;
+            }
+
             #manuel-emanuel-main .result .go-back {
                 position: absolute;
                 top: 10px;
                 right: 20px;
+                color: white;
             }
 
             #manuel-emanuel-main .result .go-back:hover {
@@ -70,10 +91,10 @@
 
             #manuel-emanuel-main form {
                 all: unset;
-                background: #EEAECA;
-                background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+                background: rgb(49, 29, 4);
+                background: radial-gradient(circle, rgb(49, 29, 4) 0%, rgb(46, 31, 12) 100%);
                 width: 600px;
-                height: 210px;
+                height: 600px;
                 padding: 5px;
                 display: flex;
                 flex-direction: column;
@@ -83,12 +104,12 @@
 
             #manuel-emanuel-main textarea {
                 all: unset;
-                width: 600px;
-                height: 170px;
-                max-width: 600px;
-                min-width: 600px;
+                width: 560px;
+                height: 530px;
+                max-width: 560px;
+                min-width: 560px;
                 padding: 10px;
-                margin: 0 0 4px 0;
+                margin: 20px 20px 4px 20px;
                 box-sizing: border-box;
                 background-color: rgba(255, 255, 255, 0.5);
                 backdrop-filter: blur(5px);
@@ -143,16 +164,26 @@
 
             #manuel-emanuel-main button {
                 all: unset;
-                background: #EEAECA;
+                background: rgb(25, 173, 25);
                 margin: 0;
                 padding: 0;
                 font-family: Inter;
                 font-weight: 500;
                 font-size: 1.2rem;
-                background: linear-gradient(to right, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+                background: linear-gradient(to right, rgb(137, 240, 137) 0%, rgb(25, 173, 25)) 100%;
                 -webkit-text-fill-color: transparent;
                 -webkit-background-clip: text;
                 background-clip: text;
+            }
+
+            #manuel-emanuel-main #manuel-emanuel-padlet-iframe {
+                margin: 0 20px;
+            }
+
+            #manuel-emanuel-main #manuel-emanuel-padlet-iframe.hidden {
+                opacity: 0;
+                pointer-events: none;
+                user-select: none;
             }
         </style>
 
@@ -165,7 +196,7 @@
                 </div>
             </form>
             <div class="result" id="manuel-emanuel-result">
-                <h1>AI Judge verdict🧑‍⚖️</h1>
+                <h1><span>AI Judge verdict</span>🧑‍⚖️</h1>
                 <p id="manuel-emanuel-response">Waiting for response...</p>
                 <button class="go-back" id="manuel-emanuel-go-back"><svg xmlns="http://www.w3.org/2000/svg" width="1em"
                         height="1em" viewBox="0 0 56 56">
@@ -174,6 +205,17 @@
                             d="M19.281 49.516c1.242 0 2.063-.844 2.063-2.063c0-.61-.188-1.055-.563-1.43l-6.75-6.586l-4.453-3.796l5.508.234h29.906c5.46 0 7.735-2.508 7.735-7.805V14.22c0-5.461-2.274-7.735-7.735-7.735H31.867c-1.289 0-2.133.938-2.133 2.086c0 1.149.844 2.086 2.133 2.086h13.125c2.484 0 3.563 1.078 3.563 3.563v13.85c0 2.555-1.079 3.633-3.563 3.633H15.086l-5.508.235l4.453-3.797l6.75-6.586c.375-.375.563-.844.563-1.453c0-1.196-.82-2.063-2.063-2.063c-.515 0-1.125.258-1.523.656L3.976 32.22c-.468.445-.703.984-.703 1.57c0 .563.235 1.125.703 1.57l13.782 13.524a2.27 2.27 0 0 0 1.523.633" />
                     </svg>
                 </button>
+                <div class="btn-bg open-padlet"><button id="manuel-emanuel-btn-padlet">Copy text and open padlet</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="manuel-emanuel-padlet-iframe" class="hidden">
+            <div class="padlet-embed"
+                style="border:1px solid rgba(0,0,0,0.1);border-radius:5px;box-sizing:border-box;overflow:hidden;position:relative;width:100%;background:#F4F4F4">
+                <p style="padding:0;margin:0"><iframe src="https://padlet.com/embed/ulyfqz1idbs9lnnm" frameborder="0"
+                        allow="camera;microphone;geolocation;display-capture;clipboard-write"
+                        style="width:500px;height:608px;display:block;padding:0;margin:0"></iframe></p>
             </div>
         </div>
 
@@ -181,6 +223,7 @@
             const textarea = document.getElementById("manuel-emanuel-textarea")
             const word_limit = document.getElementById("manuel-emanuel-wordlimit")
             const send_button = document.getElementById("manuel-emanuel-btn-send")
+            const padlet_button = document.getElementById("manuel-emanuel-btn-padlet")
             const result_tab = document.getElementById("manuel-emanuel-result")
             const return_button = document.getElementById("manuel-emanuel-go-back")
             const text_response = document.getElementById("manuel-emanuel-response")
@@ -217,9 +260,22 @@
                 text_response.textContent = "Waiting for response..."
             })
 
+            padlet_button.addEventListener('click', (e) => {
+                padlet_iframe = document.getElementById("manuel-emanuel-padlet-iframe")
+
+                if (padlet_iframe.classList.contains("hidden")) {
+                    padlet_iframe.classList.remove("hidden")
+                    padlet_button.textContent = "Close padlet"
+                    navigator.clipboard.writeText(`➤ Student's text📜:\n    ${textarea.value}\n\n➤ AI's answer🧑‍⚖️:\n    ${text_response.textContent}\n\n➤ Student's comment on the activity🧠:\n    Write your comments here...`)
+                } else {
+                    padlet_iframe.classList.add("hidden")
+                    padlet_button.textContent = "Copy text and open padlet"
+                }
+            })
+
             async function createQuery(text) {
                 const apiKey = new URLSearchParams(window.location.search).get("c")
-                
+
                 const url = "https://api.groq.com/openai/v1/chat/completions"
 
                 const payload = {
