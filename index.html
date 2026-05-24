@@ -282,10 +282,9 @@
                 if (padlet_iframe.classList.contains("hidden")) {
                     padlet_iframe.classList.remove("hidden")
                     padlet_button.textContent = "Close padlet"
-                    navigator.clipboard.writeText(`➤ Student's text📜:\n    ${textarea.value}\n\n➤ AI's answer🧑‍⚖️:\n    ${text_response.textContent}\n\n➤ Student's comment on the activity🧠:\n    Write your comments here...`)
                 } else {
                     padlet_iframe.classList.add("hidden")
-                    padlet_button.textContent = "Copy text and open padlet"
+                    padlet_button.textContent = "Open padlet"
                 }
             })
 
@@ -354,7 +353,7 @@
                                 const dataStr = line.slice(6).trim()
 
                                 if (dataStr === '[DONE]') {
-                                    text_response.textContent = fullText
+                                    text_response.textContent = `➤ Student's text📜:\n    ${textarea.value}\n\n➤ AI's answer🧑‍⚖️:\n    ${fullText}\n\n➤ Student's comment on the activity🧠:\n    Write your comments here...`
                                     return
                                 }
 
