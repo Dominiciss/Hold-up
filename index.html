@@ -35,6 +35,12 @@
                 height: 600px;
                 padding: 5px;
                 border-radius: 5px;
+            }
+
+            #manuel-emanuel-main .result.hidden {
+                opacity: 0;
+                user-select: none;
+                pointer-events: none;
                 z-index: -1;
             }
 
@@ -100,6 +106,13 @@
                 flex-direction: column;
                 align-items: center;
                 border-radius: 5px;
+            }
+
+            #manuel-emanuel-main form.hidden {
+                opacity: 0;
+                user-select: none;
+                pointer-events: none;
+                z-index: -1;
             }
 
             #manuel-emanuel-main textarea {
@@ -195,7 +208,7 @@
                     <div class="btn-bg disabled"><button id="manuel-emanuel-btn-send">Submit statement</button></div>
                 </div>
             </form>
-            <div class="result" id="manuel-emanuel-result">
+            <div class="result hidden" id="manuel-emanuel-result">
                 <h1><span>AI Judge verdict</span>🧑‍⚖️</h1>
                 <p id="manuel-emanuel-response">Waiting for response...</p>
                 <button class="go-back" id="manuel-emanuel-go-back"><svg xmlns="http://www.w3.org/2000/svg" width="1em"
@@ -253,10 +266,13 @@
                 createQuery(textarea.value)
 
                 result_tab.style['zIndex'] = 1
+                result_tab.parentElement.querySelector("form").classList.add('hidden')
+                result_tab.classList.remove('hidden')
             })
 
             return_button.addEventListener('click', (e) => {
-                result_tab.style['zIndex'] = -1
+                result_tab.classList.add('hidden')
+                result_tab.parentElement.querySelector("form").classList.remove('hidden')
                 text_response.textContent = "Waiting for response..."
             })
 
