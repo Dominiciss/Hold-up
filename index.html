@@ -353,7 +353,7 @@
                                 const dataStr = line.slice(6).trim()
 
                                 if (dataStr === '[DONE]') {
-                                    text_response.textContent = `➤ Student's text📜:\n    ${textarea.value}\n\n➤ AI's answer🧑‍⚖️:\n    ${fullText}\n\n➤ Student's comment on the activity🧠:\n    Write your comments here...`
+                                    text_response.innerHTML = `Hello student!<br>Copy this text, leave your thoughts and paste it on the padlet!<br><br><strong>➤ Student's text📜:</strong><br>    ${textarea.value}<br><br><strong>➤ AI's answer🧑‍⚖️:</strong><br>    ${fullText}<br><br><strong>➤ Student's comment on the activity🧠:</strong><br>    Write your comments here...`
                                     return
                                 }
 
