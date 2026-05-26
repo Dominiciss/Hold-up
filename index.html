@@ -145,10 +145,11 @@
                 text-decoration: underline;
                 margin: 0 10px 0 0;
                 user-select: none;
+                color: rgb(228, 228, 228);
             }
 
             #manuel-emanuel-main p.limit {
-                color: rgb(134, 2, 2);
+                color: rgb(211, 0, 0);
             }
 
             #manuel-emanuel-main .btn-bg {
@@ -276,7 +277,7 @@
                 text_response.textContent = "Waiting for response..."
             })
 
-            padlet_button.addEventListener('click', (e) => {
+            padlet_button.parentElement.addEventListener('click', (e) => {
                 padlet_iframe = document.getElementById("manuel-emanuel-padlet-iframe")
 
                 if (padlet_iframe.classList.contains("hidden")) {
@@ -368,6 +369,7 @@
                         }
                     }
                 } catch (error) {
+                    text_response.innerHTML = "AI response failed... Maybe the daily quota of 200 responses was reached?"
                     console.error("Request failed:", error)
                 }
             }
